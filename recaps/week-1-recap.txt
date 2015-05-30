@@ -1,0 +1,40 @@
+Everyone
+
+Here is a recap for week 1 in Game Design:
+
+We discussed several frameworks used by game designers to describe the process of game design
+
+-MDA - (Leblanc & Hunicke)
+-Formal, Dramatic and Dynamic elements (Fullerton)
+-Elemental Tetrad (Schell)
+
+We also looked at the fundamental aspects of the Unity environment
+
+-hierarchy pane
+-scene
+-project
+-inspector
+-game
+-console
+-scripting using c# in Unity using MonoDevelop
+-constructing prefabs
+-Creating objects using scripts 
+
+For Homework you should:
+
+Get text book
+
+Design
+	Review Chapters 1-2
+	Read Chapters 3-6 Gibson's Layered tetrad
+
+Implementation
+	Review Chapters 16-19 (Fundamentals of scripting)
+	Read Chapters 20-24 (More C# in Unity)
+	Complete Roll-a-ball (http://unity3d.com/learn/tutorials/projects/roll-a-ball)
+
+Production
+	Develop a pitch document 2-3 pages that extends Roll-a-ball to make it more interesting
+ 
+
+If you missed the first week of class, you can still make up the missed work with some effort. Please e-mail me to indicate that you will be in class next Tuesday evening.
