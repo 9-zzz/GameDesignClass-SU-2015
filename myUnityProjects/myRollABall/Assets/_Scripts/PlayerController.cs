@@ -6,12 +6,19 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
     public float jumpForce;
+    public bool canJump = false;
 
     private Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    void Jump()
+    {
+            rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+            canJump = false; 
     }
 
     void FixedUpdate()
@@ -23,11 +30,23 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(movement * speed);
 
-        if(Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && canJump)
         {
-            rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
-
+            Jump();
         }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PickUp"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
+
+    void OnCollisionStay(Collision collisionInfo)
+    {
+        canJump = true;
     }
 
 }
