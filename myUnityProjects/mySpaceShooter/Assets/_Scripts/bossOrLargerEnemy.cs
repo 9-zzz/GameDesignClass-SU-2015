@@ -10,6 +10,7 @@ public class bossOrLargerEnemy : MonoBehaviour
     public Transform sp;
     public Transform sp2;
     public float fireRate;
+    public bool enableWeapons = false;
 
     private float nextFire;
 
@@ -17,18 +18,49 @@ public class bossOrLargerEnemy : MonoBehaviour
     void Start()
     {
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
+        StartCoroutine(weaponsSwitch());
+    }
+
+    IEnumerator weaponsSwitch()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.25f);
+            enableWeapons = false;
+            yield return new WaitForSeconds(1.0f);
+            enableWeapons = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > nextFire)
+        if (enableWeapons)
         {
-            nextFire = Time.time + fireRate;
-            Instantiate(bullet, sp.position, sp.rotation);
-            Instantiate(bullet, sp2.position, sp2.rotation);
-            //GetComponent<AudioSource>().Play();
+            if (Time.time > nextFire)
+            {
+                nextFire = Time.time + fireRate;
+                Instantiate(bullet, sp.position, sp.rotation);
+                Instantiate(bullet, sp2.position, sp2.rotation);
+                //GetComponent<AudioSource>().Play();
+            }
         }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Boundary")
+        {
+            return;
+        }
+
+        if (other.tag == "PlayerBullet")
+        {
+            Destroy(gameObject);
+        }
+
+        //Destroy(other.gameObject);
+        //Destroy(gameObject);
     }
 
 }
